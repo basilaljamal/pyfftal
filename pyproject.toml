@@ -1,0 +1,37 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "pyfftal"
+version = "0.1.0"
+description = "A unified Python abstraction layer for FFT operations"
+readme = "README.md"
+requires-python = ">=3.9"
+license = {text = "MIT"}
+authors = [{name = "pyfftal contributors"}]
+dependencies = [
+    "numpy>=1.22",
+    "scipy>=1.8",
+]
+keywords = ["fft", "fourier", "signal-processing", "gpu", "fftw"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Science/Research",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Programming Language :: 3 :: Only",
+    "Topic :: Scientific/Engineering",
+]
+
+[project.optional-dependencies]
+fftw = ["pyfftw>=0.13"]
+cuda = ["cupy-cuda12x"]
+opencl = ["pyopencl", "reikna"]
+all = ["pyfftw>=0.13", "cupy-cuda12x", "pyopencl", "reikna"]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
